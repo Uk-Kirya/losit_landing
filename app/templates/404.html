@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>404 — Страница не найдена</title>
+    <meta charset="utf-8">
+    <link rel="icon" href="{{ url_for('static', path='img/fav.svg') }}" type="image/svg+xml">
+    <link rel="canonical" href="{{ request.url }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}?v=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta name="description" content="Los—IT — практические занятия по программированию, играм, сайтам, искусственному интеллекту и кибербезопасности.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="d-flex flex-column vh-100">
+
+    <header class="nav-down">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <a href="{{ url_for('home') }}" aria-label="На главную">
+                        <img src="{{ url_for('static', path='img/logo.svg') }}" alt="Los—IT — Курсы программирования для детей и взрослых в Сочи, поселок Лоо" width="156" height="56">
+                    </a>
+                    <nav aria-label="Основная навигация">
+                        <ul>
+                            <li><a href="{{ url_for('home') }}#about">О курсе</a></li>
+                            <li><a href="{{ url_for('home') }}#packages">Пакеты</a></li>
+                            <li><a href="{{ url_for('programm') }}">Программа</a></li>
+                            <li><a href="{{ url_for('home') }}#contacts">Контакты</a></li>
+                        </ul>
+                    </nav>
+                    <div class="d-none d-lg-flex">
+                        <button data-bs-toggle="modal" data-bs-target="#application" class="button__fill">
+                            Онлайн запись
+                        </button>
+                        <a href="#" class="button__stroke" target="_blank">
+                            Войти
+                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.85993 7.90693C8.87331 7.90697 9.1291 7.7537 9.42829 7.56635C9.7275 7.37896 9.96639 7.21447 9.95925 7.20084C9.95205 7.18722 9.80836 6.99318 9.6399 6.76966C9.30162 6.32079 8.97597 5.72738 8.83164 5.29693C8.38188 3.95535 8.58888 2.56223 9.40509 1.43773L9.61293 1.15137L9.21727 0.755706L8.82157 0.360011L8.56004 0.546396C6.84656 1.76754 4.79283 1.62703 2.97204 0.164141C2.85315 0.0686067 2.7515 -0.00511996 2.74612 0.000255285C2.69663 0.0497431 2.07427 1.06734 2.07441 1.0985C2.07452 1.12103 2.18337 1.2132 2.31629 1.30324C3.78805 2.30045 5.47197 2.62559 6.77363 2.16397L7.08587 2.05324L2.74488 6.41001L-6.46789e-05 9.16497L0.800699 9.96574L3.56274 7.21372L7.90928 2.88302L7.77757 3.28529C7.43584 4.32885 7.57581 5.56559 8.17683 6.81248C8.34803 7.16773 8.80928 7.9067 8.85993 7.90693Z" fill="#069D7C"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <button class="menu__button" type="button" aria-label="Открыть меню" data-bs-toggle="offcanvas" data-bs-target="#menu">
+                        <img src="{{ url_for('static', path='img/menu.svg') }}" alt="Открыть меню" width="42" height="12">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col inner__header text-center">
+                    <h1>Страница не найдена</h1>
+                    <hr>
+                </div>
+            </div>
+            <div class="row inner__content">
+                <div class="col d-flex flex-column align-items-center text-center">
+                    <img src="{{ url_for('static', path='img/404.png') }}" alt="" width="512" height="372">
+                    <p>Запрашиваемая вами страница не найдена, либо была удалена.<br>Пожалуйста, вернитесь на главную и начните поиск
+                        заново</p>
+                    <a href="{{ url_for('home') }}" class="button__fill">На главную</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <button data-bs-toggle="modal" data-bs-target="#application" class="button__fill mobile__button">
+        Записаться на пробный урок
+    </button>
+
+    <footer class="mt-auto">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="footer">
+                        <div>
+                            <div class="footer__logo">
+                                <img src="{{ url_for('static', path='img/logo.svg') }}" alt="Los—IT — Курсы программирования для детей и взрослых в Сочи, поселок Лоо" width="156" height="56">
+                            </div>
+                            <p>Курсы программирования<br>для детей и взрослых</p>
+                        </div>
+                        <div>
+                            <b>Контакты</b>
+                            <a href="tel:+79284493040" class="footer__phone">+7 928 449 30 40</a>
+                            <a href="mailto:info@los-it.ru">info@los-it.ru</a>
+                        </div>
+                        <div>
+                            <b>Документы</b>
+                            <a href="{{ url_for('policy') }}">Политика конфиденциальности</a>
+                            <a href="{{ url_for('about') }}">Информация о самозанятом</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="application">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-4">Онлайн запись</h1>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="free__lesson">Запись на пробный <strong>БЕСПЛАТНЫЙ</strong> урок</p>
+                    <form action="{{ url_for('application') }}" method="post" class="needs-validation" novalidate>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Ваше имя" required>
+                            <label for="name">Ваше имя</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="phone" class="phone__mask form-control" id="phone" placeholder="Ваш телефон" required>
+                            <label for="phone">Ваш телефон</label>
+                        </div>
+                        <p class="small__text">Отправляя заявку, вы даете согласие на хранение и обработку персональных данных. Подробнее в <a href="{{ url_for('policy') }}">политике конфиденциальности</a></p>
+                        <button type="submit" class="button__fill w-100 justify-content-center">Записаться</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-end" id="menu">
+        <button class="close__button" data-bs-dismiss="offcanvas" type="button" aria-label="Закрыть меню">
+            <img src="{{ url_for('static', path='img/close.svg') }}" alt="Закрыть меню" width="32" height="32">
+        </button>
+        <div class="offcanvas-body">
+            <ul>
+                <li><a href="{{ url_for('home') }}#about">О курсе</a></li>
+                <li><a href="{{ url_for('home') }}#packages">Пакеты</a></li>
+                <li><a href="{{ url_for('programm') }}">Программа</a></li>
+                <li><a href="{{ url_for('home') }}#contacts">Контакты</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <aside class="cookie-banner" id="cookie-banner" hidden>
+        <div>
+            <span class="cookie-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cookie"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M6 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m4.5.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3m-.5 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                    <path
+                        d="M8 0a7.96 7.96 0 0 0-4.075 1.114q-.245.102-.437.28A8 8 0 1 0 8 0m3.25 14.201a1.5 1.5 0 0 0-2.13.71A7 7 0 0 1 8 15a6.97 6.97 0 0 1-3.845-1.15 1.5 1.5 0 1 0-2.005-2.005A6.97 6.97 0 0 1 1 8c0-1.953.8-3.719 2.09-4.989a1.5 1.5 0 1 0 2.469-1.574A7 7 0 0 1 8 1c1.42 0 2.742.423 3.845 1.15a1.5 1.5 0 1 0 2.005 2.005A6.97 6.97 0 0 1 15 8c0 .596-.074 1.174-.214 1.727a1.5 1.5 0 1 0-1.025 2.25 7 7 0 0 1-2.51 2.224Z" />
+                </svg>
+            </span>
+            <div>
+                <h2>Мы используем cookie</h2>
+                <p>Продолжая пользоваться сайтом, вы соглашаетесь с <strong><a href="{{ url_for('policy') }}">политикой конфиденциальности</a></strong>.</p>
+            </div>
+        </div>
+        <button class="button__fill w-100 justify-content-center" id="accept-cookies" type="button">
+            Понятно
+        </button>
+    </aside>
+
+    <!-- Скрипты -->
+    <script src="{{ url_for('static', path='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', path='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', path='js/jquery.maskedinput.js') }}"></script>
+    <script src="{{ url_for('static', path='js/scripts.js') }}"></script>
+
+</body>
+
+</html>

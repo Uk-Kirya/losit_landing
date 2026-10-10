@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Los—IT — Курсы программирования для детей и взрослых в Сочи, поселок Лоо</title>
+    <meta charset="utf-8">
+
+    <link rel="icon" href="img/fav.svg" type="image/svg+xml">
+    <link rel="canonical" href="https://los-it.ru/">
+    <link rel="stylesheet" href="css/style.css?v=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <meta name="description" content="Los—IT — практические занятия по программированию, играм, сайтам, искусственному интеллекту и кибербезопасности.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Los—IT — Курсы программирования для детей и взрослых в Сочи, поселок Лоо">
+    <meta property="og:description" content="Los—IT — практические занятия по программированию, играм, сайтам, искусственному интеллекту и кибербезопасности.">
+    <meta property="og:url" content="https://los-it.ru/">
+    <meta property="og:image" content="https://los-it.ru/img/logo.svg">
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112836807', 'ym');
+
+        ym(112836807, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/112836807" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+</head>
+
+<body class="d-flex flex-column vh-100" id="top">
+
+    <header class="nav-down">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <a href="#top" class="topLink" aria-label="На главную">
+                        <img src="img/logo.svg" alt="LosPlatform — Платформа для создания онлайн курсов" width="156" height="56">
+                    </a>
+                    <nav aria-label="Основная навигация">
+                        <ul>
+                            <li><a href="#about" class="topLink">О курсе</a></li>
+                            <li><a href="#packages" class="topLink">Пакеты</a></li>
+                            <li><a href="programm.html">Программа</a></li>
+                            <li><a href="#contacts" class="topLink">Контакты</a></li>
+                        </ul>
+                    </nav>
+                    <div class="d-none d-lg-flex">
+                        <a href="#contacts" class="topLink button__fill">
+                            Онлайн запись
+                        </a>
+                        <a href="#" class="button__stroke" target="_blank">
+                            Войти
+                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.85993 7.90693C8.87331 7.90697 9.1291 7.7537 9.42829 7.56635C9.7275 7.37896 9.96639 7.21447 9.95925 7.20084C9.95205 7.18722 9.80836 6.99318 9.6399 6.76966C9.30162 6.32079 8.97597 5.72738 8.83164 5.29693C8.38188 3.95535 8.58888 2.56223 9.40509 1.43773L9.61293 1.15137L9.21727 0.755706L8.82157 0.360011L8.56004 0.546396C6.84656 1.76754 4.79283 1.62703 2.97204 0.164141C2.85315 0.0686067 2.7515 -0.00511996 2.74612 0.000255285C2.69663 0.0497431 2.07427 1.06734 2.07441 1.0985C2.07452 1.12103 2.18337 1.2132 2.31629 1.30324C3.78805 2.30045 5.47197 2.62559 6.77363 2.16397L7.08587 2.05324L2.74488 6.41001L-6.46789e-05 9.16497L0.800699 9.96574L3.56274 7.21372L7.90928 2.88302L7.77757 3.28529C7.43584 4.32885 7.57581 5.56559 8.17683 6.81248C8.34803 7.16773 8.80928 7.9067 8.85993 7.90693Z" fill="#069D7C"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <button class="menu__button" type="button" aria-label="Открыть меню" data-bs-toggle="offcanvas" data-bs-target="#menu">
+                        <img src="img/menu.svg" alt="Открыть меню" width="42" height="12">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container hero__block">
+            <div class="row">
+                <div class="col-xl-7 order-2 order-xl-1">
+                    <h1>Создаем игры, программируем сайты, <span>Собираем роботов</span></h1>
+                    <p>Программирование, игры, сайты, робототехника, искусственный интеллект и цифровая безопасность — в практических занятиях, где у
+                        каждого есть свой результат.</p>
+                    <div>
+                        <a href="#contacts" class="topLink button__fill">
+                            Записаться на пробный урок
+                        </a>
+                        <a href="programm.html" class="button__stroke">
+                            Программа курса
+                        </a>
+                    </div>
+                    <ul>
+                        <li>
+                            <img src="img/star.svg" alt="" width="41" height="40">
+                            Дети 7—12
+                        </li>
+                        <li>
+                            <img src="img/star.svg" alt="" width="41" height="40">
+                            Подростки 13—16
+                        </li>
+                        <li>
+                            <img src="img/star.svg" alt="" width="41" height="40">
+                            Взрослые 17+
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 mb-4 mb-lg-0 col-lg-3 col-xl-5 order-1 order-xl-2">
+                    <picture>
+                        <source
+                            media="(max-width: 576px)"
+                            srcset="img/hero.webp"
+                            width="200"
+                            height="200"
+                        >
+                        <img
+                            class="hero__image"
+                            src="img/hero.webp"
+                            alt="Визуализация курсов Los—IT"
+                            width="526"
+                            height="526"
+                            fetchpriority="high"
+                        >
+                    </picture>
+                </div>
+            </div>
+        </div>
+
+        <div class="container block__2">
+            <div class="row">
+                <div class="col-lg-6 col-xl-4">
+                    <h2>Знания, которые видно в результате</h2>
+                </div>
+                <div class="col-lg-4 offset-lg-2">
+                    <p>Каждая тема становится понятной, когда ребёнок применяет её сам — в игре, сайте, программе или умном проекте.</p>
+                </div>
+            </div>
+            <div class="row mt-4 pt-2">
+                <div class="col-md-6 col-lg-4 col-xl-3 mt-4">
+                    <div class="card__1">
+                        <span>🛠️</span>
+                        <h3>Учимся через практику</h3>
+                        <p>Меньше лекций, больше задач, экспериментов и собственных решений.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-3 mt-4">
+                    <div class="card__1">
+                        <span>🚀</span>
+                        <h3>Создаём, а не смотрим</h3>
+                        <p>Ученик пишет код, собирает игры, сайты и цифровые проекты сам.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-3 mt-4">
+                    <div class="card__1">
+                        <span>🛡️</span>
+                        <h3>Кибербезопасность</h3>
+                        <p>Разбираем пароли, фишинг, аккаунты и безопасное поведение онлайн.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-3 mt-4">
+                    <div class="card__1">
+                        <span>🤖</span>
+                        <h3>ИИ</h3>
+                        <p>Знакомимся с искуственным интеллектом и понимаем, как им пользоваться.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="block__3">
+                        <div id="about"></div>
+                        <div>
+                            <h2>Основные направления нашего курса.</h2>
+                            <p>Стартуем с понятного уровня и постепенно добавляем инструменты — без лишней сложности и в своём темпе.</p>
+                            <div>
+                                <a href="#contacts" class="topLink button__fill">
+                                    Записаться на пробный урок
+                                </a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>
+                                <img src="img/check.svg" alt="" width="32" height="32">
+                                <p>
+                                    <strong>Программирование</strong>
+                                    Алгоритмы, логика, Python и собственные программы.
+                                </p>
+                            </li>
+                            <li>
+                                <img src="img/check.svg" alt="" width="32" height="32">
+                                <p>
+                                    <strong>Создание игр</strong>
+                                    От идеи до механик, персонажей и готовой игры.
+                                </p>
+                            </li>
+                            <li>
+                                <img src="img/check.svg" alt="" width="32" height="32">
+                                <p>
+                                    <strong>Создание сайтов</strong>
+                                    HTML, CSS, Python, Deploy и веб-проекты.
+                                </p>
+                            </li>
+                            <li>
+                                <img src="img/check.svg" alt="" width="32" height="32">
+                                <p>
+                                    <strong>Робототехника</strong>
+                                    Создаем роботов и программируем их.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="block__4">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <h2>Для всех и каждого!</h2>
+                                <p>В группе нет «слишком сложных» технологий. Есть понятные шаги, интересные задачи и поддержка преподавателя.</p>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mt-4">
+                                <div class="card__2">
+                                    <span>Дети 7—12</span>
+                                    <h3>Играем, изучаем, создаем</h3>
+                                    <ul>
+                                        <li>Знакомство с ПК</li>
+                                        <li>Первые игры</li>
+                                        <li>Робототехника</li>
+                                        <li>Интернет-безопасность</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mt-4">
+                                <div class="card__2 primary__card">
+                                    <span>Подростки 13—16</span>
+                                    <h3>Программируем</h3>
+                                    <ul>
+                                        <li>Python</li>
+                                        <li>HTML / CSS / JS</li>
+                                        <li>Искусственный интеллект</li>
+                                        <li>Кибербезопасность</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mt-4">
+                                <div class="card__2">
+                                    <span>Взрослые 17+</span>
+                                    <h3>Настоящее IT</h3>
+                                    <ul>
+                                        <li>Python</li>
+                                        <li>HTML / CSS / JS</li>
+                                        <li>Docker / Git</li>
+                                        <li>Deploy & CI/CD</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <a href="#" class="button__stroke">
+                                    Ознакомиться с программой
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container block__2">
+            <div id="features"></div>
+            <div class="row">
+                <div class="col-lg-6 col-xl-4">
+                    <h2>Реальные работы по окончанию курса</h2>
+                </div>
+                <div class="col-lg-4 offset-lg-2 offset-xl-4">
+                    <p>Теория становится ценной только тогда, когда ребёнок видит: «Я это создал».</p>
+                </div>
+            </div>
+            <div class="row mt-4 pt-2">
+                <div class="col-md-6 col-lg-4 mt-4">
+                    <div class="card__1">
+                        <h3>Своя игра</h3>
+                        <p>Механики, уровни, герои и правила.</p>
+                        <span>🎮</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mt-4">
+                    <div class="card__1">
+                        <h3>Свой сайт</h3>
+                        <p>Страница о хобби, проекте или идее.</p>
+                        <span>💻</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mt-4">
+                    <div class="card__1">
+                        <h3>Своя программа</h3>
+                        <p>Программа, решающая реальную задачу.</p>
+                        <span>👨‍💻</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="block__4 cyber__block">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <h2>Кибер-безопасность</h2>
+                                <p>Учимся думать о безопасности в интернете и жизни.</p>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mt-4">
+                                <div class="card__2">
+                                    <span>01</span>
+                                    <h3>Надёжные пароли</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mt-4">
+                                <div class="card__2">
+                                    <span>02</span>
+                                    <h3>Защита аккаунтов</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mt-4">
+                                <div class="card__2">
+                                    <span>03</span>
+                                    <h3>Распознавание фишинга</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mt-4">
+                                <div class="card__2">
+                                    <span>04</span>
+                                    <h3>Личные данные</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mt-4">
+                                <div class="card__2">
+                                    <span>05</span>
+                                    <h3>Подозрительные ссылки</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 mt-4">
+                                <div class="card__2">
+                                    <span>06</span>
+                                    <h3>Безопасное использование AI</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container block__5">
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-xl-4 order-1">
+                    <h2>Как проходят занятия</h2>
+                </div>
+                <div class="col-lg-7 col-xl-8 block__5__buttons order-3 order-lg-2">
+                    <a href="#contacts" class="topLink button__fill">
+                        Онлайн запись
+                    </a>
+                    <a href="programm.html" class="button__stroke">
+                        Программа курса
+                    </a>
+                </div>
+                <div class="col-12 order-2 order-lg-3 mt-4">
+                    <div class="row">
+                        <div class="col-lg-4 mt-4">
+                            <div class="card__3">
+                                До
+                                <h3>3</h3>
+                                <p>
+                                    <strong>Человек в группе</strong>
+                                    Преподаватель успевает помочь и поддержать каждого.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mt-4">
+                            <div class="card__3">
+                                Минут
+                                <h3>60</h3>
+                                <p>
+                                    <strong>Одно занятие</strong>
+                                    Без длинных лекций: тема быстро переходит в дело.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mt-4">
+                            <div class="card__3">
+                                Раза
+                                <h3>2</h3>
+                                <p>
+                                    <strong>В неделю</strong>
+                                    8 занятий в месяц — стабильный темп без перегруза.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="block__4">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <h2>Галерея</h2>
+                                <p>В процессе — много общения, экспериментов и моментов, которыми хочется делиться.</p>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="owl-carousel owl-theme carousel">
+                                    <div class="item">
+                                        <div class="ratio ratio-4x3">
+                                            <div>
+                                                <picture class="video__card" data-bs-toggle="modal" data-bs-target="#video__1">
+                                                    <img src="img/photos/video_1.png" alt="">
+                                                </picture>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="ratio ratio-4x3">
+                                            <div>
+                                                <picture data-src="img/photos/1.jpg" data-fancybox="gal">
+                                                    <img src="img/photos/1.jpg" alt="">
+                                                </picture>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="ratio ratio-4x3">
+                                            <div>
+                                                <picture class="video__card" data-bs-toggle="modal" data-bs-target="#video__2">
+                                                    <img src="img/photos/video_2.png" alt="">
+                                                </picture>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="ratio ratio-4x3">
+                                            <div>
+                                                <picture data-src="img/photos/2.jpg" data-fancybox="gal">
+                                                    <img src="img/photos/2.jpg" alt="">
+                                                </picture>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container block__2">
+            <div id="packages"></div>
+            <div class="row mb-2">
+                <div class="col-lg-6 col-xl-5">
+                    <h2>Выберите подходящий формат обучения</h2>
+                </div>
+                <div class="col-lg-4 offset-lg-2 offset-xl-3">
+                    <p>Начать можно с бесплатного пробного урока — познакомиться с преподавателем и понять текущий уровень.</p>
+                </div>
+            </div>
+            <div class="row mt-4 pt-2">
+                <div class="col-lg-4 mt-4">
+                    <div class="card__2 tariff__card">
+                        <div>
+                            <strong>В группе</strong>
+                            <p>Групповые занятия</p>
+                            <h3>5 000 ₽ / мес</h3>
+                        </div>
+                        <ul>
+                            <li>До 3 учеников</li>
+                            <li>8 занятий по 60 минут</li>
+                            <li>Программа по возрасту</li>
+                            <li>Проекты и кибербезопасность</li>
+                        </ul>
+                        <a href="#contacts" class="topLink button__stroke">
+                            Записаться
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-4">
+                    <div class="card__2 tariff__card tariff__card__premium">
+                        <div>
+                            <strong>Первое знакомство</strong>
+                            <p>Пробный урок</p>
+                            <h3>Бесплатно</h3>
+                        </div>
+                        <ul>
+                            <li>Знакомство с преподавателем</li>
+                            <li>Определение уровня</li>
+                            <li>Первая практическая задача</li>
+                            <li>Ответы на вопросы родителей</li>
+                        </ul>
+                        <a href="#contacts" class="topLink button__fill">
+                            Записаться
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-4">
+                    <div class="card__2 tariff__card">
+                        <div>
+                            <strong>Один на один</strong>
+                            <p>Индивидуальные занятия</p>
+                            <h3>10 000 ₽ / мес</h3>
+                        </div>
+                        <ul>
+                            <li>1 ученик</li>
+                            <li>8 занятий по 60 минут</li>
+                            <li>Персональная программа</li>
+                            <li>Темп и проекты по интересам</li>
+                        </ul>
+                        <a href="#contacts" class="topLink button__stroke">
+                            Записаться
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container faq__block">
+            <div id="faq"></div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <h2>Часто задаваемые вопросы</h2>
+                    <p>Если не нашли свой вопрос, начните с бесплатного урока — это самый быстрый способ познакомиться со школой.</p>
+                </div>
+                <div class="col-lg-7 offset-lg-1">
+                    <div class="faq__list">
+                        
+                        <div>
+                            <button type="button" data-bs-toggle="collapse" data-bs-target="#q__1">
+                                С какого возраста можно заниматься?
+                                <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div id="q__1" class="accordion-collapse collapse show">
+                                <div class="accordion-body">
+                                    <p>С 7 лет. Группы формируются с учётом возраста и уровня подготовки.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#q__2">
+                                Нужен ли ребёнку опыт программирования?
+                                <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div id="q__2" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <p>Нет. Мы начинаем с понятных основ и постепенно добавляем новые инструменты.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#q__3">
+                                Сколько длится базовая программа?
+                                <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div id="q__3" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <p>Шесть месяцев: 48 занятий, два раза в неделю.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#q__4">
+                                Можно заниматься индивидуально?
+                                <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div id="q__4" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <p>Да. В индивидуальном формате программа и темп подстраиваются под интересы ученика.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#q__5">
+                                Есть ли бесплатный пробный урок?
+                                <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div id="q__5" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <p>Да. На нём знакомимся, определяем уровень и показываем, как проходит занятие.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="block__3 block__3__2">
+                        <div>
+                            <h1>Начните знакомство с IT уже сейчас</h1>
+                            <p>Первый урок в Los—IT — бесплатно. Попробуйте формат, познакомьтесь с преподавателем и выберите свою траекторию.</p>
+                            <div>
+                                <a href="#contacts" class="topLink button__fill">
+                                    Записаться на пробный урок
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container contacts__block">
+            <div id="contacts"></div>
+            <div class="row">
+                <div class="col-lg-5">
+                    <h2>Выберите, как удобно записаться</h2>
+                </div>
+                <div class="col-lg-4 offset-lg-3">
+                    <p>Позвоните или напишите в удобный мессенджер — ответим на вопросы и подберём группу.</p>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-lg-6">
+                    <div class="contact__card">
+                        <span>Звоните</span>
+                        <a href="tel:+79284493040" class="contact__phone">+7 928 449 30 40</a>
+                        <p>Обсудим формат пробного урока</p>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="contact__card">
+                        <span>Пишите в чат</span>
+                        <strong>Telegram</strong>
+                        <a href="https://t.me/kirilllossev" target="_blank">Написать в чат</a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="contact__card">
+                        <span>Пишите в чат</span>
+                        <strong>MAX</strong>
+                        <a href="https://max.ru/u/f9LHodD0cOIgkbDWBRCuu9fdmntx1BQfi35QyrbFPMAjOB5cj65BhhItaBE" target="_blank">Написать в чат</a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact__card">
+                        <span>Мы в соцсетях</span>
+                        <strong>ВКонтакте</strong>
+                        <a href="https://vk.ru/los_it" target="_blank">Перейти</a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact__card">
+                        <span>График</span>
+                        <em>Вт — Вс</em>
+                        <strong>10:00 — 21:00</strong>
+                        <p>Понедельник — выходной</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact__card">
+                        <span>Наш офис</span>
+                        <strong>г. Сочи,<br>ул. Декабристов 77 (Лоо)</strong>
+                        <a href="https://yandex.ru/maps/?from=mapframe&ll=39.597846%2C43.685957&source=mapframe&um=constructor%3Abeffc3e045a7dbed517717049885fb511ced9777fac23a7256668e54c315fad9&utm_source=mapframe&z=14" target="_blank">Смотреть на карте</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <a href="#contacts" class="topLink button__fill mobile__button">
+        Записаться на пробный урок
+    </a>
+
+    <footer class="mt-auto">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="footer">
+                        <div>
+                            <div class="footer__logo">
+                                <img src="img/logo.svg" alt="LosPlatform — Платформа для создания онлайн курсов" width="156" height="56">
+                            </div>
+                            <p>Курсы программирования<br>для детей и взрослых</p>
+                        </div>
+                        <div>
+                            <b>Контакты</b>
+                            <a href="tel:+79284493040" class="footer__phone">+7 928 449 30 40</a>
+                            <a href="mailto:info@los-it.ru">info@los-it.ru</a>
+                        </div>
+                        <div>
+                            <b>Документы</b>
+                            <a href="policy.html">Политика конфиденциальности</a>
+                            <a href="about.html">Информация о самозанятом</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="offcanvas offcanvas-end" id="menu">
+        <button class="close__button" data-bs-dismiss="offcanvas" type="button" aria-label="Закрыть меню">
+            <img src="img/close.svg" alt="Закрыть меню" width="32" height="32">
+        </button>
+        <div class="offcanvas-body">
+            <ul>
+                <li data-bs-dismiss="offcanvas"><a href="#about" class="topLink">О курсе</a></li>
+                <li data-bs-dismiss="offcanvas"><a href="#packages" class="topLink">Пакеты</a></li>
+                <li><a href="programm.html">Программа</a></li>
+                <li data-bs-dismiss="offcanvas"><a href="#contacts" class="topLink">Контакты</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <aside class="cookie-banner" id="cookie-banner" hidden>
+        <div>
+            <span class="cookie-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cookie"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M6 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m4.5.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3m-.5 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                    <path
+                        d="M8 0a7.96 7.96 0 0 0-4.075 1.114q-.245.102-.437.28A8 8 0 1 0 8 0m3.25 14.201a1.5 1.5 0 0 0-2.13.71A7 7 0 0 1 8 15a6.97 6.97 0 0 1-3.845-1.15 1.5 1.5 0 1 0-2.005-2.005A6.97 6.97 0 0 1 1 8c0-1.953.8-3.719 2.09-4.989a1.5 1.5 0 1 0 2.469-1.574A7 7 0 0 1 8 1c1.42 0 2.742.423 3.845 1.15a1.5 1.5 0 1 0 2.005 2.005A6.97 6.97 0 0 1 15 8c0 .596-.074 1.174-.214 1.727a1.5 1.5 0 1 0-1.025 2.25 7 7 0 0 1-2.51 2.224Z" />
+                </svg>
+            </span>
+            <div>
+                <h2>Мы используем cookie</h2>
+                <p>Продолжая пользоваться сайтом, вы соглашаетесь с <strong><a href="policy.html">политикой конфиденциальности</a></strong>.</p>
+            </div>
+        </div>
+        <button class="button__fill w-100 justify-content-center" id="accept-cookies" type="button">
+            Понятно
+        </button>
+    </aside>
+
+    <div class="modal fade" tabindex="-1" id="video__1">
+        <div class="modal-dialog modal-dialog-centered video__modal__vertical">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Соломон, 7 лет</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="video__block">
+                        <div>
+                            <video playsinline controls>
+                                <source src="videos/video_1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="video__2">
+        <div class="modal-dialog modal-dialog-centered video__modal__vertical">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Теона, 9 лет</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="video__block">
+                        <div>
+                            <video playsinline controls>
+                                <source src="videos/video_2.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Стили -->
+    <link rel="stylesheet" href="css/owl.css">
+    <link rel="stylesheet" href="css/fancybox.css">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+    <!-- Скрипты -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/fancybox.umd.js"></script>
+    <script src="js/owl.carousel.js"></script>
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script src="js/scripts.js"></script>
+
+</body>
+
+</html>

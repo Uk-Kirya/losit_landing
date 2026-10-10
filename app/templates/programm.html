@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Программа курса — Los—IT</title>
+    <meta charset="utf-8">
+
+    <link rel="icon" href="{{ url_for('static', path='img/fav.svg') }}" type="image/svg+xml">
+    <link rel="canonical" href="{{ request.url }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}?v=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <meta name="description" content="Los—IT — практические занятия по программированию, играм, сайтам, искусственному интеллекту и кибербезопасности.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Los—IT — Курсы программирования для детей и взрослых в Сочи, поселок Лоо">
+    <meta property="og:description" content="Los—IT — практические занятия по программированию, играм, сайтам, искусственному интеллекту и кибербезопасности.">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:image" content="{{ url_for('static', path='img/logo.svg') }}">
+    <meta property="og:site_name" content="Los—IT">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112836807', 'ym');
+
+        ym(112836807, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/112836807" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+</head>
+
+<body class="d-flex flex-column vh-100">
+
+    <header class="nav-down">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <a href="{{ url_for('home') }}" aria-label="На главную">
+                        <img src="{{ url_for('static', path='img/logo.svg') }}" alt="Los—IT — Курсы программирования для детей и взрослых в Сочи, поселок Лоо" width="156" height="56">
+                    </a>
+                    <nav aria-label="Основная навигация">
+                        <ul>
+                            <li><a href="{{ url_for('home') }}#about">О курсе</a></li>
+                            <li><a href="{{ url_for('home') }}#packages">Пакеты</a></li>
+                            <li><a href="{{ url_for('programm') }}">Программа</a></li>
+                            <li><a href="{{ url_for('home') }}#contacts">Контакты</a></li>
+                        </ul>
+                    </nav>
+                    <div class="d-none d-lg-flex">
+                        <button data-bs-toggle="modal" data-bs-target="#application" class="button__fill">
+                            Онлайн запись
+                        </button>
+                        <a href="#" class="button__stroke" target="_blank">
+                            Войти
+                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.85993 7.90693C8.87331 7.90697 9.1291 7.7537 9.42829 7.56635C9.7275 7.37896 9.96639 7.21447 9.95925 7.20084C9.95205 7.18722 9.80836 6.99318 9.6399 6.76966C9.30162 6.32079 8.97597 5.72738 8.83164 5.29693C8.38188 3.95535 8.58888 2.56223 9.40509 1.43773L9.61293 1.15137L9.21727 0.755706L8.82157 0.360011L8.56004 0.546396C6.84656 1.76754 4.79283 1.62703 2.97204 0.164141C2.85315 0.0686067 2.7515 -0.00511996 2.74612 0.000255285C2.69663 0.0497431 2.07427 1.06734 2.07441 1.0985C2.07452 1.12103 2.18337 1.2132 2.31629 1.30324C3.78805 2.30045 5.47197 2.62559 6.77363 2.16397L7.08587 2.05324L2.74488 6.41001L-6.46789e-05 9.16497L0.800699 9.96574L3.56274 7.21372L7.90928 2.88302L7.77757 3.28529C7.43584 4.32885 7.57581 5.56559 8.17683 6.81248C8.34803 7.16773 8.80928 7.9067 8.85993 7.90693Z" fill="#069D7C"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <button class="menu__button" type="button" aria-label="Открыть меню" data-bs-toggle="offcanvas" data-bs-target="#menu">
+                        <img src="{{ url_for('static', path='img/menu.svg') }}" alt="Открыть меню" width="42" height="12">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col inner__header">
+                    <h1>Программа курса</h1>
+                    <hr>
+                </div>
+            </div>
+            <div class="row inner__content">
+                <div class="col">
+                    <div class="row programm__statistic">
+                        <div class="col-4 mb-4">
+                            <div class="card__1">
+                                <h3>6</h3>
+                                <p>Месяцев обучения</p>
+                            </div>
+                        </div>
+                        <div class="col-4 mb-4">
+                            <div class="card__1">
+                                <h3>48</h3>
+                                <p>Занятий в программе</p>
+                            </div>
+                        </div>
+                        <div class="col-4 mb-4">
+                            <div class="card__1">
+                                <h3>60 минут</h3>
+                                <p>Одно занятие</p>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav">
+                        <li>
+                            <button class="active" data-bs-toggle="pill" data-bs-target="#p__1" type="button">
+                                Дети 7—12
+                            </button>
+                        </li>
+                        <li>
+                            <button data-bs-toggle="pill" data-bs-target="#p__2" type="button">
+                                Подростки 13—16
+                            </button>
+                        </li>
+                        <li>
+                            <button data-bs-toggle="pill" data-bs-target="#p__3" type="button">
+                                Взрослые 17+
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="p__1">
+                            <p>Компьютер · Scratch · Python · AI · Кибербезопасность</p>
+                            <div class="faq__list">
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_1_1">
+                                        01 · Знакомство с компьютером
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_1_1" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Базовые навыки и безопасность</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>Знакомство с компьютером и ноутбуком</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>Клавиатура: буквы, цифры, символы</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>Печать текста: скорость и точность</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>Мышь, тачпад и горячие клавиши</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Файлы и папки</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Программы, окна и рабочий стол</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>Интернет и браузер</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Кибербезопасность: личные данные и пароли</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_1_2">
+                                        02 · Scratch
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_1_2" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Программирование через игру</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>Знакомство со Scratch</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>Персонажи и сцена</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>Движение и управление персонажем</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>События и взаимодействия</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Условия и логика</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Циклы</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>Переменные и очки</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Кибербезопасность + мини-игра</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_1_3">
+                                        03 · Scratch: создание игр
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_1_3" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Собственные игровые проекты</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>Планирование собственной игры</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>Игровая механика</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>Уровни и сложность</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>Таймеры и игровые события</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Звуки и анимация</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Меню и интерфейс игры</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>Сборка собственной игры</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Кибербезопасность: игры, аккаунты и мошенничество</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_1_4">
+                                        04 · Python с нуля
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_1_4" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Основы настоящего программирования</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>Знакомство с Python</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>Переменные и типы данных</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>Ввод и вывод данных</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>Условия if / else</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Циклы</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Списки</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>Функции</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Кибербезопасность + мини-проект на Python</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_1_5">
+                                        05 · Python + AI
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_1_5" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Код, нейросети и цифровая грамотность</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>Python: работа с данными</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>Python: создание простых программ</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>Что такое искусственный интеллект</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>Как правильно общаться с AI</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>AI для учёбы и поиска информации</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Создание изображений с AI</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>Создание текста и идей с AI</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Кибербезопасность: AI, персональные данные и фейки</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_1_6">
+                                        06 · Итоговый проект
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_1_6" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>От идеи до презентации</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>Выбор и идея проекта</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>Планирование проекта</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>Создание проекта</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>Создание проекта</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Добавление AI / Python / Scratch</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Тестирование и исправление ошибок</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>Подготовка презентации проекта</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Защита итогового проекта</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="p__2">
+                            <p>Python · HTML · CSS · Figma · PostgreSQL · Backend · Full-Stack</p>
+                            <div class="faq__list">
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_2_1">
+                                        01 · Python
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_2_1" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Программирование с нуля</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>Python и среда разработки</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>Переменные и типы данных</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>Условия и логические операторы</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>Циклы</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Строки и работа с текстом</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Списки, кортежи и словари</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>Функции и модули</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Кибербезопасность: пароли, данные, фишинг</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_2_2">
+                                        02 · HTML
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_2_2" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Создание структуры сайтов</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>Как устроен веб</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>HTML: структура страницы</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>Текст, заголовки, списки и ссылки</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>Изображения и мультимедиа</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Таблицы и формы</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Семантический HTML</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>Структура полноценной страницы</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Кибербезопасность: сайты, фишинг и социальная инженерия</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_2_3">
+                                        03 · CSS + Figma
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_2_3" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Дизайн и адаптивная вёрстка</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>CSS: подключение и селекторы</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>Цвета, шрифты и текст</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>Box Model</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>Flexbox</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Flexbox: сложные макеты</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Grid</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>Адаптивная вёрстка</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Кибербезопасность: браузер, cookies, HTTPS</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_2_4">
+                                        04 · Figma + полноценный сайт
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_2_4" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>UX/UI → готовый интерфейс</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>Знакомство с Figma</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>Макет сайта в Figma</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>UX/UI: структура и пользовательский сценарий</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>Компоненты и UI-система</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Вёрстка макета</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Адаптация сайта под мобильные устройства</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>Сборка сайта под ключ</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Кибербезопасность сайта: XSS, формы, данные пользователя</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_2_5">
+                                        05 · PostgreSQL + Backend
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_2_5" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Данные, API и серверная часть</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>Что такое базы данных и SQL</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>PostgreSQL: таблицы и типы данных</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>SELECT, WHERE, ORDER BY</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>INSERT, UPDATE, DELETE</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Связи таблиц и JOIN</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Python + PostgreSQL</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>FastAPI: основы API и Backend</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Кибербезопасность: SQL Injection и защита данных</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_2_6">
+                                        06 · Full-Stack проект
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_2_6" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Сайт с базой данных и авторизацией</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>Архитектура Full-Stack проекта</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>Backend проекта на FastAPI</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>Подключение PostgreSQL</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>Frontend + Backend</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Авторизация и регистрация</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Тестирование и исправление ошибок</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>Финальная сборка Full-Stack проекта</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Защита проекта</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="p__3">
+                            <p>Full-Stack · FastAPI · PostgreSQL · Docker · CI/CD · Deploy</p>
+                            <div class="faq__list">
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_3_1">
+                                        01 · Python + профессиональная разработка
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_3_1" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Код, архитектура и Git</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>Python: структура проекта и окружение</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>Python: функции и модули</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>Python: ООП</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>Python: классы и наследование</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Работа с файлами и JSON</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Обработка ошибок и исключения</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>Git и GitHub</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Кибербезопасность: Git, пароли, токены и секреты</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_3_2">
+                                        02 · HTML + CSS + Figma
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_3_2" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Современный веб-интерфейс</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>Архитектура современного веб-сайта</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>Семантический HTML</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>CSS: продвинутая стилизация</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>Flexbox + Grid</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Адаптивная вёрстка</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Figma: UX/UI</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>Figma → HTML/CSS</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Кибербезопасность веб-интерфейсов</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_3_3">
+                                        03 · PostgreSQL + Backend
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_3_3" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Базы данных и серверная разработка</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>Архитектура базы данных</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>PostgreSQL: проектирование таблиц</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>SQL: сложные запросы</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>JOIN и связи</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Индексы и оптимизация запросов</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Python + PostgreSQL</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>ORM и работа с базой</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Кибербезопасность: SQL Injection и защита БД</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_3_4">
+                                        04 · FastAPI
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_3_4" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Создание полноценного API</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>FastAPI: структура проекта</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>Роуты и HTTP</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>Pydantic и валидация данных</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>CRUD API</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>PostgreSQL + FastAPI</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Авторизация и регистрация</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>JWT / Cookies / права доступа</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Кибербезопасность API</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_3_5">
+                                        05 · Docker + CI/CD
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_3_5" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Контейнеризация и автоматизация</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>Docker: контейнеры и образы</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>Dockerfile</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>Docker Compose</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>Docker + FastAPI + PostgreSQL</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Переменные окружения и secrets</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>GitHub Actions</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>CI/CD: автоматическая сборка и тестирование</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Кибербезопасность DevOps и Docker</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="collapsed" data-bs-toggle="collapse" data-bs-target="#p_3_6">
+                                        06 · Deploy + Production
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.75 0.75L8.75 8.75L16.75 0.750002" stroke="#191AD7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div id="p_3_6" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p>Запуск проекта на реальном сервере</p>
+                                            <div class="programm__list">
+                                                <div>
+                                                    <em>01</em>
+                                                    <p>VPS и Linux для разработчика</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>02</em>
+                                                    <p>Deploy приложения на сервер</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>03</em>
+                                                    <p>Nginx и reverse proxy</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>04</em>
+                                                    <p>HTTPS и SSL-сертификат</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>05</em>
+                                                    <p>Production-конфигурация приложения</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>06</em>
+                                                    <p>Логи, мониторинг и резервные копии</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>07</em>
+                                                    <p>Финальный Deploy Full-Stack проекта</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                                <div>
+                                                    <em>08</em>
+                                                    <p>Защита проекта и разбор Production-системы</p>
+                                                    <span>60 мин</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <button data-bs-toggle="modal" data-bs-target="#application" class="button__fill mobile__button">
+        Записаться на пробный урок
+    </button>
+
+    <footer class="mt-auto">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="footer">
+                        <div>
+                            <div class="footer__logo">
+                                <img src="{{ url_for('static', path='img/logo.svg') }}" alt="Los—IT — Курсы программирования для детей и взрослых в Сочи, поселок Лоо" width="156" height="56">
+                            </div>
+                            <p>Курсы программирования<br>для детей и взрослых</p>
+                        </div>
+                        <div>
+                            <b>Контакты</b>
+                            <a href="tel:+79284493040" class="footer__phone">+7 928 449 30 40</a>
+                            <a href="mailto:info@los-it.ru">info@los-it.ru</a>
+                        </div>
+                        <div>
+                            <b>Документы</b>
+                            <a href="{{ url_for('policy') }}">Политика конфиденциальности</a>
+                            <a href="{{ url_for('about') }}">Информация о самозанятом</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="application">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-4">Онлайн запись</h1>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="free__lesson">Запись на пробный <strong>БЕСПЛАТНЫЙ</strong> урок</p>
+                    <form action="{{ url_for('application') }}" method="post" class="needs-validation" novalidate>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Ваше имя" required>
+                            <label for="name">Ваше имя</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="phone" class="phone__mask form-control" id="phone" placeholder="Ваш телефон" required>
+                            <label for="phone">Ваш телефон</label>
+                        </div>
+                        <p class="small__text">Отправляя заявку, вы даете согласие на хранение и обработку персональных данных. Подробнее в <a href="{{ url_for('policy') }}">политике конфиденциальности</a></p>
+                        <button type="submit" class="button__fill w-100 justify-content-center">Записаться</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-end" id="menu">
+        <button class="close__button" data-bs-dismiss="offcanvas" type="button" aria-label="Закрыть меню">
+            <img src="{{ url_for('static', path='img/close.svg') }}" alt="Закрыть меню" width="32" height="32">
+        </button>
+        <div class="offcanvas-body">
+            <ul>
+                <li><a href="{{ url_for('home') }}#about">О курсе</a></li>
+                <li><a href="{{ url_for('home') }}#packages">Пакеты</a></li>
+                <li><a href="{{ url_for('programm') }}">Программа</a></li>
+                <li><a href="{{ url_for('home') }}#contacts">Контакты</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <aside class="cookie-banner" id="cookie-banner" hidden>
+        <div>
+            <span class="cookie-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cookie"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M6 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m4.5.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3m-.5 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                    <path
+                        d="M8 0a7.96 7.96 0 0 0-4.075 1.114q-.245.102-.437.28A8 8 0 1 0 8 0m3.25 14.201a1.5 1.5 0 0 0-2.13.71A7 7 0 0 1 8 15a6.97 6.97 0 0 1-3.845-1.15 1.5 1.5 0 1 0-2.005-2.005A6.97 6.97 0 0 1 1 8c0-1.953.8-3.719 2.09-4.989a1.5 1.5 0 1 0 2.469-1.574A7 7 0 0 1 8 1c1.42 0 2.742.423 3.845 1.15a1.5 1.5 0 1 0 2.005 2.005A6.97 6.97 0 0 1 15 8c0 .596-.074 1.174-.214 1.727a1.5 1.5 0 1 0-1.025 2.25 7 7 0 0 1-2.51 2.224Z" />
+                </svg>
+            </span>
+            <div>
+                <h2>Мы используем cookie</h2>
+                <p>Продолжая пользоваться сайтом, вы соглашаетесь с <strong><a href="{{ url_for('policy') }}">политикой конфиденциальности</a></strong>.</p>
+            </div>
+        </div>
+        <button class="button__fill w-100 justify-content-center" id="accept-cookies" type="button">
+            Понятно
+        </button>
+    </aside>
+
+    <!-- Скрипты -->
+    <script src="{{ url_for('static', path='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', path='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', path='js/jquery.maskedinput.js') }}"></script>
+    <script src="{{ url_for('static', path='js/scripts.js') }}"></script>
+
+</body>
+
+</html>
