@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Аналитика — Los-IT</title>
+
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0b1120;
+            --card: #121c2e;
+            --card-hover: #19263b;
+            --border: #263650;
+            --text: #edf3ff;
+            --muted: #8fa1bd;
+            --accent: #4b9cff;
+            --accent-bg: #142e4e;
+            --green: #49dcb1;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font: 14px/1.55 system-ui, -apple-system, sans-serif;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        button, input { font: inherit; }
+
+        main {
+            width: min(1500px, 100%);
+            margin: auto;
+            padding: 30px 22px 50px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            margin: 0 0 5px;
+            font-size: clamp(24px, 3vw, 32px);
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            margin: 0 0 18px;
+            font-size: 17px;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .muted { color: var(--muted); }
+        .small { font-size: 12px; }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 30px;
+            padding: 9px 14px;
+            color: var(--green);
+            white-space: nowrap;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            min-width: 0;
+        }
+
+        .metric-label {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .metric {
+            font-size: clamp(30px, 4vw, 42px);
+            font-weight: 750;
+            line-height: 1.25;
+            letter-spacing: -1.5px;
+            margin: 12px 0 7px;
+            overflow-wrap: anywhere;
+        }
+
+        .accent { color: var(--accent); }
+
+        .filter-card { margin-bottom: 22px; }
+
+        .filter-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .filter-title h2 { margin: 0; }
+
+        .presets {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+        }
+
+        .preset, .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 1px solid var(--border);
+            background: #18243a;
+            color: var(--text);
+            border-radius: 9px;
+            padding: 9px 14px;
+            cursor: pointer;
+            transition: .15s ease;
+            text-decoration: none;
+        }
+
+        .preset:hover, .button:hover {
+            background: var(--card-hover);
+            border-color: #47658b;
+        }
+
+        .preset.active {
+            background: var(--accent-bg);
+            border-color: var(--accent);
+            color: #a9d3ff;
+        }
+
+        .filter-forms {
+            display: grid;
+            grid-template-columns: minmax(200px, .8fr) minmax(320px, 1.5fr);
+            gap: 24px;
+        }
+
+        .form-block {
+            min-width: 0;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: end;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            min-width: 0;
+            padding: 10px 11px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .button-primary {
+            background: var(--accent);
+            color: #061326;
+            border-color: var(--accent);
+            font-weight: 700;
+        }
+
+        .button-primary:hover {
+            background: #72b2ff;
+            color: #061326;
+        }
+
+        .button-export {
+            background: #173a35;
+            border-color: #286b5e;
+            color: #a5f2dc;
+            font-weight: 650;
+        }
+
+        .button-export:hover {
+            background: #205046;
+        }
+
+        .table-card { padding: 0; overflow: hidden; }
+
+        .table-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 22px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .table-heading h2 { margin: 0 0 4px; }
+
+        .table-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            text-align: left;
+        }
+
+        .visits-table { min-width: 980px; }
+
+        th, td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        th {
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            white-space: nowrap;
+            background: #10192a;
+        }
+
+        tbody tr:last-child > td { border-bottom: 0; }
+
+        tbody tr:hover > td { background: rgba(255,255,255,.015); }
+
+        .session-details { min-width: 230px; }
+
+        .session-details summary {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            list-style: none;
+            font-weight: 650;
+        }
+
+        .session-details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .chevron {
+            display: inline-block;
+            color: var(--accent);
+            transition: transform .15s ease;
+        }
+
+        details[open] .chevron {
+            transform: rotate(90deg);
+        }
+
+        .session-number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 30px;
+            height: 30px;
+            border-radius: 9px;
+            background: var(--accent-bg);
+            color: #9bcaff;
+            font-size: 12px;
+        }
+
+        .session-meta {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .pages-list {
+            margin-top: 16px;
+            padding: 13px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+        }
+
+        .pages-title {
+            margin-bottom: 10px;
+            color: var(--muted);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .4px;
+        }
+
+        .page-row {
+            display: grid;
+            grid-template-columns: 145px minmax(150px, 1fr) auto;
+            align-items: start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .page-row:last-child { border-bottom: 0; }
+
+        .page-time {
+            color: var(--muted);
+            font-size: 12px;
+            overflow-wrap: anywhere;
+        }
+
+        .page-path {
+            overflow-wrap: anywhere;
+            color: #c8dcff;
+        }
+
+        .method {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .device-badge {
+            display: inline-flex;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            padding: 5px 8px;
+            white-space: nowrap;
+            color: #c5d5ee;
+            font-size: 12px;
+        }
+
+        .location {
+            min-width: 130px;
+            overflow-wrap: anywhere;
+        }
+
+        .ip {
+            color: var(--muted);
+            font: 12px ui-monospace, monospace;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 44px 20px;
+            color: var(--muted);
+        }
+
+        .empty strong {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--text);
+            font-size: 15px;
+        }
+
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 22px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            overflow-wrap: anywhere;
+        }
+
+        .stat-item:last-child { border-bottom: 0; }
+
+        .stat-value {
+            color: #a9d3ff;
+            font-weight: 700;
+        }
+
+        footer {
+            margin-top: 22px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        @media (max-width: 900px) {
+            .filter-forms { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: 1fr 1fr; }
+            .grid .card:last-child { grid-column: 1 / -1; }
+        }
+
+        @media (max-width: 600px) {
+            main { padding: 20px 12px 35px; }
+            .grid, .bottom-grid { grid-template-columns: 1fr; }
+            .grid .card:last-child { grid-column: auto; }
+            .card { padding: 17px; }
+            .table-heading { padding: 17px; }
+            .table-heading .table-actions { width: 100%; }
+            .table-actions .button { flex: 1; }
+            .page-row {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+            .form-row { align-items: stretch; }
+            .form-row .button { width: 100%; }
+        }
+    </style>
+</head>
+
+<body>
+<main>
+    <header class="header">
+        <div>
+            <h1>Аналитика посещений</h1>
+            <div class="muted">Los-IT · Статистика сайта</div>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            Сбор данных активен
+        </div>
+    </header>
+
+    <!-- Основная статистика -->
+    <section class="grid">
+        <article class="card">
+            <div class="metric-label">Уникальные посещения за всё время</div>
+            <div class="metric">{{ stats.total_unique }}</div>
+            <div class="muted small">Все сохранённые сессии</div>
+        </article>
+
+        <article class="card">
+            <div class="metric-label">Уникальные посещения сегодня</div>
+            <div class="metric accent">{{ stats.today_unique }}</div>
+            <div class="muted small">По московскому времени</div>
+        </article>
+
+        <article class="card">
+            <div class="metric-label">За выбранный период</div>
+            <div class="metric">{{ stats.filtered_unique }}</div>
+            <div class="muted small">
+                {% if stats.all_time %}
+                    Вся история аналитики
+                {% else %}
+                    {{ stats.start_date }} — {{ stats.end_date }}
+                {% endif %}
+            </div>
+        </article>
+    </section>
+
+    <!-- Фильтры -->
+    <section class="card filter-card">
+        <div class="filter-title">
+            <h2>Период аналитики</h2>
+            <span class="muted small">Выбери период для таблицы и экспорта</span>
+        </div>
+
+        <nav class="presets">
+            <a class="preset {{ 'active' if period == 'today' else '' }}"
+               href="/analytics?period=today">Сегодня</a>
+
+            <a class="preset {{ 'active' if period == '1' else '' }}"
+               href="/analytics?period=1">1 день</a>
+
+            <a class="preset {{ 'active' if period == '3' else '' }}"
+               href="/analytics?period=3">3 дня</a>
+
+            <a class="preset {{ 'active' if period == '7' else '' }}"
+               href="/analytics?period=7">7 дней</a>
+
+            <a class="preset {{ 'active' if period == 'all' else '' }}"
+               href="/analytics?period=all">Всё время</a>
+        </nav>
+
+        <div class="filter-forms">
+            <form class="form-block" method="get" action="/analytics">
+                <label class="form-label" for="selected-date">
+                    Посещения за конкретную дату
+                </label>
+
+                <div class="form-row">
+                    <div class="field">
+                        <input
+                            id="selected-date"
+                            type="date"
+                            name="date"
+                            value="{{ selected_date }}"
+                            required
+                        >
+                    </div>
+
+                    <button class="button button-primary" type="submit">
+                        Показать дату
+                    </button>
+                </div>
+            </form>
+
+            <form class="form-block" method="get" action="/analytics">
+                <label class="form-label">Произвольный диапазон</label>
+
+                <div class="form-row">
+                    <div class="field">
+                        <label class="muted small" for="start-date">С даты</label>
+                        <input
+                            id="start-date"
+                            type="date"
+                            name="start_date"
+                            value="{{ start_date }}"
+                            required
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label class="muted small" for="end-date">По дату</label>
+                        <input
+                            id="end-date"
+                            type="date"
+                            name="end_date"
+                            value="{{ end_date }}"
+                            required
+                        >
+                    </div>
+
+                    <button class="button button-primary" type="submit">
+                        Применить
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Таблица уникальных посещений -->
+    <section class="card table-card">
+        <div class="table-heading">
+            <div>
+                <h2>Уникальные посещения</h2>
+                <div class="muted small">
+                    Нажми на сессию, чтобы посмотреть посещённые страницы
+                </div>
+            </div>
+
+            <div class="table-actions">
+                <a
+                    class="button button-export"
+                    href="/analytics/export.xlsx?period={{ period }}{% if start_date %}&start_date={{ start_date }}{% endif %}{% if end_date %}&end_date={{ end_date }}{% endif %}{% if selected_date %}&date={{ selected_date }}{% endif %}"
+                >
+                    ↓ Экспорт в Excel
+                </a>
+            </div>
+        </div>
+
+        <div class="table-wrap">
+            <table class="visits-table">
+                <thead>
+                    <tr>
+                        <th>Уникальное посещение</th>
+                        <th>Последняя активность</th>
+                        <th>Страниц</th>
+                        <th>Устройство</th>
+                        <th>Местоположение</th>
+                        <th>IP-адрес</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for session in stats.sessions %}
+                    <tr>
+                        <td>
+                            <details class="session-details">
+                                <summary>
+                                    <span class="chevron">▶</span>
+                                    <span class="session-number">
+                                        {{ loop.index }}
+                                    </span>
+                                    <span>
+                                        Посещение #{{ loop.index }}
+                                        <span class="session-meta">
+                                            {{ session.first_seen }}
+                                        </span>
+                                    </span>
+                                </summary>
+
+                                <div class="pages-list">
+                                    <div class="pages-title">
+                                        История страниц · {{ session.page_count }}
+                                    </div>
+
+                                    {% for page in session.pages %}
+                                    <div class="page-row">
+                                        <span class="page-time"
+                                              data-time="{{ page.visited_at }}">
+                                            {{ page.visited_at }}
+                                        </span>
+
+                                        <span class="page-path">
+                                            {{ page.path }}
+                                        </span>
+
+                                        <span class="method">
+                                            {{ page.method }}
+                                        </span>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </details>
+                        </td>
+
+                        <td data-time="{{ session.last_seen }}">
+                            {{ session.last_seen }}
+                        </td>
+
+                        <td>
+                            <strong>{{ session.page_count }}</strong>
+                        </td>
+
+                        <td>
+                            <span class="device-badge">
+                                {{ session.device }}
+                            </span>
+                        </td>
+
+                        <td class="location">
+                            {{ session.city }}<br>
+                            <span class="muted small">
+                                {{ session.country }}
+                            </span>
+                        </td>
+
+                        <td class="ip">
+                            {{ session.client_ip or '—' }}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6">
+                            <div class="empty">
+                                <strong>Посещений за этот период нет</strong>
+                                Попробуй выбрать другой день или диапазон дат.
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Дополнительная статистика за выбранный период -->
+    <section class="bottom-grid">
+        <article class="card">
+            <h2>Популярные страницы</h2>
+
+            {% for page in stats.pages %}
+            <div class="stat-item">
+                <span>{{ page.path }}</span>
+                <span class="stat-value">{{ page.views }}</span>
+            </div>
+            {% else %}
+            <div class="muted">Нет данных за выбранный период</div>
+            {% endfor %}
+        </article>
+
+        <article class="card">
+            <h2>Устройства посетителей</h2>
+
+            {% for device in stats.devices %}
+            <div class="stat-item">
+                <span>{{ device.device }}</span>
+                <span class="stat-value">{{ device.count }}</span>
+            </div>
+            {% else %}
+            <div class="muted">Нет данных за выбранный период</div>
+            {% endfor %}
+        </article>
+    </section>
+
+    <footer>
+        Время в таблице отображается в часовом поясе Europe/Moscow.
+        Геолокация приблизительная. Один session_id учитывается как одно
+        уникальное посещение в пределах выбранного периода.
+    </footer>
+</main>
+
+<script>
+    // Переводим сохранённые UTC-метки в московское время.
+    document.querySelectorAll("[data-time]").forEach((element) => {
+        const raw = element.dataset.time;
+        const normalized = /(?:Z|[+-]\d{2}:\d{2})$/.test(raw)
+            ? raw
+            : raw + "Z";
+
+        const parsed = new Date(normalized);
+
+        if (!Number.isNaN(parsed.getTime())) {
+            element.textContent = new Intl.DateTimeFormat("ru-RU", {
+                timeZone: "Europe/Moscow",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }).format(parsed);
+        }
+    });
+</script>
+</body>
+</html>
