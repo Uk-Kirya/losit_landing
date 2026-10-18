@@ -341,169 +341,169 @@ def resolve_analytics_filter(
     # По умолчанию — сегодня
     return today, today, False, "today"
 
-@app.get(
-    "/analytics",
-    response_class=HTMLResponse,
-    include_in_schema=False,
-)
-async def analytics_page(
-    request: Request,
-    period: str = Query(default="today"),
-    start_date: date | None = Query(default=None),
-    end_date: date | None = Query(default=None),
-    date: date | None = Query(default=None),
-):
-    start, end, all_time, selected_period = resolve_analytics_filter(
-        period=period,
-        start_date=start_date,
-        end_date=end_date,
-        selected_date=date,
-    )
-
-    stats = get_stats(
-        start_date=start,
-        end_date=end,
-        all_time=all_time,
-    )
-
-    return templates.TemplateResponse(
-        "analytics.html",
-        {
-            "request": request,
-            "stats": stats,
-            "period": selected_period,
-            "start_date": start.isoformat() if start else "",
-            "end_date": end.isoformat() if end else "",
-            "selected_date": date.isoformat() if date else "",
-        },
-    )
-
-
-@app.get(
-    "/analytics/export.xlsx",
-    include_in_schema=False,
-)
-async def export_analytics(
-    period: str = Query(default="today"),
-    start_date: date | None = Query(default=None),
-    end_date: date | None = Query(default=None),
-    date: date | None = Query(default=None),
-):
-    start, end, all_time, selected_period = resolve_analytics_filter(
-        period=period,
-        start_date=start_date,
-        end_date=end_date,
-        selected_date=date,
-    )
-
-    stats = get_stats(
-        start_date=start,
-        end_date=end,
-        all_time=all_time,
-    )
-
-    workbook = Workbook()
-
-    # Лист 1: сводка.
-    summary = workbook.active
-    summary.title = "Сводка"
-    summary.append(["Показатель", "Значение"])
-    summary.append(["Уникальные посещения за всё время", stats["total_unique"]])
-    summary.append(["Уникальные посещения сегодня", stats["today_unique"]])
-    summary.append(["Уникальные посещения за выбранный период", stats["filtered_unique"]])
-    summary.append(["Активные сессии за последние 30 минут", stats["active"]])
-    summary.append([
-        "Период",
-        "Всё время" if all_time else f"{start} — {end}",
-    ])
-
-    # Лист 2: уникальные посещения.
-    sessions_sheet = workbook.create_sheet("Посещения")
-    sessions_sheet.append([
-        "ID сессии",
-        "Первое посещение",
-        "Последнее посещение",
-        "Количество страниц",
-        "Устройство",
-        "Страна",
-        "Город",
-        "IP",
-    ])
-
-    # Лист 3: каждая посещённая страница.
-    pages_sheet = workbook.create_sheet("Страницы")
-    pages_sheet.append([
-        "ID сессии",
-        "Дата и время",
-        "URL",
-        "Метод",
-        "Устройство",
-        "Страна",
-        "Город",
-        "IP",
-    ])
-
-    for session in stats["sessions"]:
-        sessions_sheet.append([
-            session["session_id"],
-            session["first_seen"],
-            session["last_seen"],
-            session["page_count"],
-            session["device"],
-            session["country"],
-            session["city"],
-            session["client_ip"] or "",
-        ])
-
-        for page in session["pages"]:
-            pages_sheet.append([
-                session["session_id"],
-                page["visited_at"],
-                page["path"],
-                page["method"],
-                session["device"],
-                session["country"],
-                session["city"],
-                session["client_ip"] or "",
-            ])
-
-    # Оформление листов.
-    for sheet in workbook.worksheets:
-        sheet.freeze_panes = "A2"
-        sheet.auto_filter.ref = sheet.dimensions
-
-        for cell in sheet[1]:
-            cell.font = Font(bold=True, color="FFFFFF")
-            cell.fill = PatternFill(
-                fill_type="solid",
-                fgColor="1E90FF",
-            )
-            cell.alignment = Alignment(vertical="center")
-
-        for column in sheet.columns:
-            column_letter = column[0].column_letter
-            max_length = max(
-                (len(str(cell.value or "")) for cell in column),
-                default=10,
-            )
-            sheet.column_dimensions[column_letter].width = min(
-                max(max_length + 2, 12),
-                45,
-            )
-
-    output = BytesIO()
-    workbook.save(output)
-    output.seek(0)
-
-    filename = f"los_it_analytics_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx"
-
-    return StreamingResponse(
-        output,
-        media_type=(
-            "application/vnd.openxmlformats-officedocument."
-            "spreadsheetml.sheet"
-        ),
-        headers={
-            "Content-Disposition": f'attachment; filename="{filename}"'
-        },
-    )
+# @app.get(
+#     "/analytics",
+#     response_class=HTMLResponse,
+#     include_in_schema=False,
+# )
+# async def analytics_page(
+#     request: Request,
+#     period: str = Query(default="today"),
+#     start_date: date | None = Query(default=None),
+#     end_date: date | None = Query(default=None),
+#     date: date | None = Query(default=None),
+# ):
+#     start, end, all_time, selected_period = resolve_analytics_filter(
+#         period=period,
+#         start_date=start_date,
+#         end_date=end_date,
+#         selected_date=date,
+#     )
+#
+#     stats = get_stats(
+#         start_date=start,
+#         end_date=end,
+#         all_time=all_time,
+#     )
+#
+#     return templates.TemplateResponse(
+#         "analytics.html",
+#         {
+#             "request": request,
+#             "stats": stats,
+#             "period": selected_period,
+#             "start_date": start.isoformat() if start else "",
+#             "end_date": end.isoformat() if end else "",
+#             "selected_date": date.isoformat() if date else "",
+#         },
+#     )
+#
+#
+# @app.get(
+#     "/analytics/export.xlsx",
+#     include_in_schema=False,
+# )
+# async def export_analytics(
+#     period: str = Query(default="today"),
+#     start_date: date | None = Query(default=None),
+#     end_date: date | None = Query(default=None),
+#     date: date | None = Query(default=None),
+# ):
+#     start, end, all_time, selected_period = resolve_analytics_filter(
+#         period=period,
+#         start_date=start_date,
+#         end_date=end_date,
+#         selected_date=date,
+#     )
+#
+#     stats = get_stats(
+#         start_date=start,
+#         end_date=end,
+#         all_time=all_time,
+#     )
+#
+#     workbook = Workbook()
+#
+#     # Лист 1: сводка.
+#     summary = workbook.active
+#     summary.title = "Сводка"
+#     summary.append(["Показатель", "Значение"])
+#     summary.append(["Уникальные посещения за всё время", stats["total_unique"]])
+#     summary.append(["Уникальные посещения сегодня", stats["today_unique"]])
+#     summary.append(["Уникальные посещения за выбранный период", stats["filtered_unique"]])
+#     summary.append(["Активные сессии за последние 30 минут", stats["active"]])
+#     summary.append([
+#         "Период",
+#         "Всё время" if all_time else f"{start} — {end}",
+#     ])
+#
+#     # Лист 2: уникальные посещения.
+#     sessions_sheet = workbook.create_sheet("Посещения")
+#     sessions_sheet.append([
+#         "ID сессии",
+#         "Первое посещение",
+#         "Последнее посещение",
+#         "Количество страниц",
+#         "Устройство",
+#         "Страна",
+#         "Город",
+#         "IP",
+#     ])
+#
+#     # Лист 3: каждая посещённая страница.
+#     pages_sheet = workbook.create_sheet("Страницы")
+#     pages_sheet.append([
+#         "ID сессии",
+#         "Дата и время",
+#         "URL",
+#         "Метод",
+#         "Устройство",
+#         "Страна",
+#         "Город",
+#         "IP",
+#     ])
+#
+#     for session in stats["sessions"]:
+#         sessions_sheet.append([
+#             session["session_id"],
+#             session["first_seen"],
+#             session["last_seen"],
+#             session["page_count"],
+#             session["device"],
+#             session["country"],
+#             session["city"],
+#             session["client_ip"] or "",
+#         ])
+#
+#         for page in session["pages"]:
+#             pages_sheet.append([
+#                 session["session_id"],
+#                 page["visited_at"],
+#                 page["path"],
+#                 page["method"],
+#                 session["device"],
+#                 session["country"],
+#                 session["city"],
+#                 session["client_ip"] or "",
+#             ])
+#
+#     # Оформление листов.
+#     for sheet in workbook.worksheets:
+#         sheet.freeze_panes = "A2"
+#         sheet.auto_filter.ref = sheet.dimensions
+#
+#         for cell in sheet[1]:
+#             cell.font = Font(bold=True, color="FFFFFF")
+#             cell.fill = PatternFill(
+#                 fill_type="solid",
+#                 fgColor="1E90FF",
+#             )
+#             cell.alignment = Alignment(vertical="center")
+#
+#         for column in sheet.columns:
+#             column_letter = column[0].column_letter
+#             max_length = max(
+#                 (len(str(cell.value or "")) for cell in column),
+#                 default=10,
+#             )
+#             sheet.column_dimensions[column_letter].width = min(
+#                 max(max_length + 2, 12),
+#                 45,
+#             )
+#
+#     output = BytesIO()
+#     workbook.save(output)
+#     output.seek(0)
+#
+#     filename = f"los_it_analytics_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx"
+#
+#     return StreamingResponse(
+#         output,
+#         media_type=(
+#             "application/vnd.openxmlformats-officedocument."
+#             "spreadsheetml.sheet"
+#         ),
+#         headers={
+#             "Content-Disposition": f'attachment; filename="{filename}"'
+#         },
+#     )
