@@ -14,15 +14,10 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 
-from app.CounterMiddleware import CounterMiddleWare
 from app.mailer import send_email
 
 app = FastAPI()
 templates = Jinja2Templates(directory="app/templates")
-
-app.add_middleware(
-    CounterMiddleWare
-)
 
 # Proxy headers
 app.add_middleware(
