@@ -527,7 +527,6 @@ main {
 .block__4 .col-12 p {
     font-size: 1rem;
     color: var(--gray);
-    font-size: 1rem;
     line-height: 140%;
     margin: 1rem 0 1.5rem 0;
     max-width: 500px;
@@ -626,7 +625,7 @@ main {
     font-size: 8rem;
     line-height: 80% !important;
     margin: 0 !important;
-    font-family: 'Regular' !important;
+    font-family: 'Regular', sans-serif !important;
 }
 
 .card__3 p strong {
@@ -738,7 +737,7 @@ main {
 
 .table__block>div:first-child {
     background-color: transparent !important;
-    font-family: 'Semibold' !important;
+    font-family: 'Semibold', sans-serif !important;
 }
 
 .table__block>div:first-child:hover {
@@ -902,7 +901,9 @@ main {
     height: 100%;
     top: 0;
     right: 0;
-    background: url(../img/big_logo.svg) center right no-repeat;
+    background-image: url(../img/big_logo.svg);
+    background-position: center end;
+    background-repeat: no-repeat;
     z-index: 1;
 }
 
@@ -934,7 +935,7 @@ main {
     gap: 14px;
     font-size: 1.5rem;
     color: var(--primary);
-    font-family: 'Semibold';
+    font-family: 'Semibold', sans-serif;
 }
 
 .footer p {
@@ -969,7 +970,7 @@ main {
 
 .footer__phone {
     color: var(--primary) !important;
-    font-family: 'Semibold';
+    font-family: 'Semibold', sans-serif;
 }
 
 .footer__phone:hover {
@@ -1036,8 +1037,8 @@ main {
     margin-top: 16px;
     min-height: 42px;
     width: 100%;
-    color: var(--ink);
-    background-color: var(--lime);
+    color: var(--primary);
+    background-color: var(--midnight-blue);
 }
 
 input,
@@ -1200,7 +1201,7 @@ textarea,
     margin-bottom: 1.5rem !important;
     background-color: var(--ligth-gray);
     color: var(--midnight-blue);
-    font-family: 'Semibold';
+    font-family: 'Semibold', sans-serif;
 }
 
 .contacts__block {
@@ -1246,13 +1247,13 @@ textarea,
 .contact__phone {
     font-size: 2.5rem;
     color: var(--black);
-    font-family: 'Semibold';
+    font-family: 'Semibold', sans-serif;
 }
 
 .contact__card strong {
     font-size: 1.5rem;
     color: var(--black);
-    font-family: 'Regular' !important;
+    font-family: 'Regular', sans-serif !important;
 }
 
 .contact__phone:hover {
@@ -1322,7 +1323,6 @@ textarea,
     display: flex;
     flex-direction: column;
     gap: .5rem;
-    display: flex;
     align-items: start;
 }
 
@@ -1349,7 +1349,7 @@ textarea,
 }
 
 .programm__list > div span {
-    font-family: 'Semibold';
+    font-family: 'Semibold', sans-serif;
     color: var(--gray);
     margin-left: auto;
     font-size: .75rem;
@@ -1649,7 +1649,6 @@ textarea,
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: space-between;
         gap: 2rem;
         padding: 2rem 1rem 0 1rem;
         justify-content: center;
