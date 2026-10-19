@@ -901,9 +901,7 @@ main {
     height: 100%;
     top: 0;
     right: 0;
-    background-image: url(../img/big_logo.svg);
-    background-position: center end;
-    background-repeat: no-repeat;
+    background-image: url(../img/big_logo.svg) center right no-repeat;
     z-index: 1;
 }
 
