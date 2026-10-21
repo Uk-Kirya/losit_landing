@@ -3,7 +3,7 @@ from pathlib import Path
 import sentry_sdk
 
 sentry_sdk.init(
-    dsn="https://4a37a1b67d8f1db04801d05851bb52bc@vseok.su/1007",
+    dsn="https://4a37a1b67d8f1db04801d05851bb52bc@vseok.su/5f466082-ba39-4066-bf35-692501535444",
     release="myapp@1.0.0",
     environment="production",
     traces_sample_rate=0.1,
