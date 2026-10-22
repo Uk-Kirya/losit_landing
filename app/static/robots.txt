@@ -1,4 +1,9 @@
 User-agent: *
+
 Allow: /
+
+Disallow: /anketa
+Disallow: /success-questionnaire
+Disallow: /success
 
 Sitemap: https://los-it.ru/sitemap.xml

@@ -189,6 +189,55 @@ async def success(
 
 
 @app.get(
+    '/anketa',
+    response_class=HTMLResponse,
+    summary='Анкета ученика',
+    include_in_schema=False,
+    name='questionnaire',
+    tags=["Веб-сайт"]
+)
+async def questionnaire(
+    request: Request
+) -> HTMLResponse:
+    """
+    Анкета ученика
+    :param request: Request Object
+    :return: HTMLResponse Object
+    """
+
+    return templates.TemplateResponse(
+        'questionnaire.html',
+        {
+            'request': request,
+        }
+    )
+
+
+@app.get(
+    '/success-questionnaire',
+    response_class=HTMLResponse,
+    summary='Анкета отправлена',
+    include_in_schema=False,
+    tags=["Веб-сайт"]
+)
+async def success_questionnaire(
+    request: Request
+) -> HTMLResponse:
+    """
+    Анкета отправлена
+    :param request: Request Object
+    :return: HTMLResponse Object
+    """
+
+    return templates.TemplateResponse(
+        'success-questionnaire.html',
+        {
+            'request': request,
+        }
+    )
+
+
+@app.get(
     "/robots.txt",
     response_class=FileResponse,
     summary="Файл robots.txt",
@@ -278,9 +327,89 @@ async def application(
                     <li><b>Телефон:</b> {phone}</li>
                 </ul>
                 """
-    await send_email('udarnik.kirill@mail.ru', subject, body)
+    await send_email('info@los-it.ru', subject, body)
 
     return RedirectResponse(
         url='/success',
+        status_code=302,
+    )
+
+
+@app.post(
+    '/anketa',
+    response_class=RedirectResponse,
+    summary='Онлайн запись',
+    name='questionnaire_application',
+    include_in_schema=False,
+    tags=["Веб-сайт"]
+)
+async def questionnaire_application(
+    request: Request,
+
+    parent_name: str = Form(None),
+    parent_phone: str = Form(None),
+    parent_email: str = Form(None),
+    messanger_max: str = Form(None),
+    messanger_whatsapp: str = Form(None),
+    messanger_telegram: str = Form(None),
+
+    child_name: str = Form(None),
+    child_female: str = Form(None),
+    child_age: str = Form(None),
+    child_bio: str = Form(None),
+) -> RedirectResponse:
+    """
+    Онлайн запись
+    :param parent_name: Parent Name from form
+    :param parent_phone: Parent Phone from form
+    :param parent_email: Parent E-mail from form
+    :param messanger_max: MAX from form
+    :param messanger_whatsapp: WhatsApp from form
+    :param messanger_telegram: Telegram from form
+    :param child_name: Child Name from form
+    :param child_female: Child Female from form
+    :param child_age: Child Age from form
+    :param child_bio: Child Biography from form
+    :return: RedirectResponse Object
+    """
+
+    # Безопасная обработка None и пустых значений
+    parent_name = parent_name.strip() if parent_name else '—'
+    parent_phone = parent_phone.strip() if parent_phone else '—'
+    parent_email = parent_email.strip() if parent_email else '—'
+    messanger_max = messanger_max.strip() if messanger_max else '—'
+    messanger_whatsapp = messanger_whatsapp.strip() if messanger_whatsapp else '—'
+    messanger_telegram = messanger_telegram.strip() if messanger_telegram else '—'
+    child_name = child_name.strip() if child_name else '—'
+    child_female = child_female.strip() if child_female else '—'
+    child_age = child_age.strip() if child_age else '—'
+    child_bio = child_bio.strip() if child_bio else '—'
+
+    subject = f"Анкета ученика"
+    body = f"""
+                <p>Здравствуйте, Кирилл Александрович!</p>
+                <p>У вас новые данные ученика с сайта Los—IT</p>
+                <p>Данные из анкеты:</p>
+                <i>Родитель</i>
+                <ul>
+                    <li><b>Имя родителя:</b> {parent_name}</li>
+                    <li><b>Телефон родителя:</b> {parent_phone}</li>
+                    <li><b>E-mail родителя:</b> {parent_email}</li>
+                    <li><b>MAX:</b> {messanger_max}</li>
+                    <li><b>WhatsApp:</b> {messanger_whatsapp}</li>
+                    <li><b>Telegram:</b> {messanger_telegram}</li>
+                </ul>
+                <i>Ребенок</i>
+                <ul>
+                    <li><b>Имя:</b> {child_name}</li>
+                    <li><b>Пол:</b> {child_female}</li>
+                    <li><b>Возраст:</b> {child_age}</li>
+                    <li><b>Биография:</b> {child_bio}</li>
+                </ul>
+                """
+    await send_email('info@los-it.ru', subject, body)
+
+    return RedirectResponse(
+        url='/success-questionnaire',
         status_code=302,
     )
