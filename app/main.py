@@ -115,6 +115,31 @@ async def get_policy(
 
 
 @app.get(
+    '/cookies',
+    response_class=HTMLResponse,
+    summary='Страница с политикой cookies',
+    include_in_schema=False,
+    name='cookies',
+    tags=["Веб-сайт"]
+)
+async def get_cookies(
+    request: Request
+) -> HTMLResponse:
+    """
+    Страница политика cookies
+    :param request: Request Object
+    :return: HTMLResponse Object
+    """
+
+    return templates.TemplateResponse(
+        'cookies.html',
+        {
+            'request': request,
+        }
+    )
+
+
+@app.get(
     '/about',
     response_class=HTMLResponse,
     summary='Информация о самозанятом',
