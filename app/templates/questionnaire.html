@@ -75,7 +75,7 @@
                           <label for="parent_phone">Телефон родителя</label>
                       </div>
                       <div class="form-floating mb-3">
-                          <input type="email" name="parent_email" class="form-control" id="parent_email" placeholder="E-mail родителя" required>
+                          <input type="email" name="parent_email" class="form-control" id="parent_email" placeholder="E-mail родителя">
                           <label for="parent_email">E-mail родителя</label>
                         <p class="mt-2 mb-0" style="font-size: .75rem;">На данную почту мы будем отправлять учебную информацию, чеки об оплате, а также информировать об акциях и скидках</p>
                         <p style="font-size: .75rem;">Если почты нет, достаточно указать один из мессенджеров, чтобы мы отправляли информацию туда.</p>
@@ -112,8 +112,8 @@
                           <label for="child_age">Возраст ребенка</label>
                       </div>
                       <div class="form-floating mb-3">
-                        <textarea name="child_bio" class="form-control" placeholder="Расскажите коротко о ребенке (хобби, увлечения)" id="child_bio" style="height: 150px"></textarea>
-                        <label for="child_bio">Расскажите коротко о ребенке (его хобби, увлечения)</label>
+                        <textarea name="child_bio" class="form-control" placeholder="Расскажите немного о ребенке" id="child_bio" style="height: 150px"></textarea>
+                        <label for="child_bio">Расскажите немного о ребенке</label>
                       </div>
                       <p class="small__text">Отправляя анкету, вы даете согласие на хранение и обработку персональных данных. Подробнее в <a href="{{ url_for('policy') }}">политике конфиденциальности</a></p>
                       <button type="submit" class="button__fill w-100 justify-content-center">Отправить анкету</button>
