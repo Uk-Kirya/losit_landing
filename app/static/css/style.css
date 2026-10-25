@@ -1395,12 +1395,15 @@ textarea,
 
 .carousel {
     position: relative;
-    width: calc(100% + 7rem) !important;
 }
 
 .carousel .item {
-    margin-left: 1.5rem;
     padding-right: 1px;
+}
+
+.carousel .disabled {
+    opacity: .5;
+    cursor: default !important;
 }
 
 .fancybox__thumbs,

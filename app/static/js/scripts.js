@@ -27,24 +27,24 @@ $(document).ready(function () {
     var owl = $('.carousel');
 
     owl.owlCarousel({
-        margin: 0,
+        margin: 12,
         nav: true,
         dots: false,
-        autoHeight: true,
-        loop: true,
+        autoHeight: false,
+        loop: false,
 
         responsive: {
             0: {
-                items: 1.5
+                items: 1
             },
             576: {
-                items: 1.5
+                items: 1
             },
             768: {
-                items: 2.5
+                items: 2
             },
             1200: {
-                items: 3.5
+                items: 3
             }
         }
     });
