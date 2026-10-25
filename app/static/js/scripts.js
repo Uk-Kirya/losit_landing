@@ -247,4 +247,10 @@ $(document).ready(function () {
 
     });
 
+    document.querySelectorAll(
+        '.owl-carousel button[role]:not(.owl-dot), .owl-nav button[role]:not(.owl-dot)'
+    ).forEach(function (btn) {
+        btn.removeAttribute('role');
+    });
+
 });
