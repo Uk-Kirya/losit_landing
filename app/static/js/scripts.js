@@ -253,4 +253,36 @@ $(document).ready(function () {
         btn.removeAttribute('role');
     });
 
+
+    const form = document.getElementById('applicationForm');
+    const nameInput = document.getElementById('name');
+    const phoneInput = document.getElementById('phone');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // Функция проверки заполненности
+    function validateForm() {
+        const nameValue = nameInput.value.trim();
+        const phoneValue = phoneInput.value.trim();
+
+        // Кнопка активна, только если оба поля заполнены
+        const isValid = nameValue !== '' && phoneValue !== '';
+        submitBtn.disabled = !isValid;
+    }
+
+    // Проверяем при каждом вводе
+    nameInput.addEventListener('input', validateForm);
+    phoneInput.addEventListener('input', validateForm);
+
+    // Проверяем при загрузке (на случай автозаполнения)
+    validateForm();
+
+    // Дополнительная защита при отправке формы
+    form.addEventListener('submit', function (e) {
+        if (!nameInput.value.trim() || !phoneInput.value.trim()) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+    });
+
 });
