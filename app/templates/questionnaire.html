@@ -163,7 +163,7 @@
                 </div>
                 <div class="modal-body">
                     <p class="free__lesson">Запись на пробный <strong>БЕСПЛАТНЫЙ</strong> урок</p>
-                    <form id="application-form" action="{{ url_for('application') }}" method="post" class="needs-validation" novalidate onsubmit="if (this.checkValidity()) { ym(676148202, 'reachGoal', 'form_send_success'); return true; } else { event.preventDefault(); event.stopPropagation(); }">
+                    <form id="application-form" action="{{ url_for('application') }}" method="post" class="needs-validation" novalidate onsubmit="if (this.checkValidity()) { ym(676148202, 'reachGoal', 'form_send_success'); } else { event.preventDefault(); event.stopPropagation(); }">
                         <div class="form-floating mb-3">
                             <input type="text" name="name" class="form-control" id="name" placeholder="Ваше имя" required>
                             <label for="name">Ваше имя</label>
