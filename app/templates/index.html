@@ -747,7 +747,7 @@
                 </div>
                 <div class="modal-body">
                     <p class="free__lesson">Запись на пробный <strong>БЕСПЛАТНЫЙ</strong> урок</p>
-                    <form action="{{ url_for('application') }}" method="post" class="needs-validation" novalidate>
+                    <form id="application-form" action="{{ url_for('application') }}" method="post" class="needs-validation" novalidate>
                         <div class="form-floating mb-3">
                             <input type="text" name="name" class="form-control" id="name" placeholder="Ваше имя" required>
                             <label for="name">Ваше имя</label>
@@ -757,27 +757,11 @@
                             <label for="phone">Ваш телефон</label>
                         </div>
 
-                        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" value="6LfhoQYuAAAAAPOq7RLTveXsvFpMaNpj2nWDSjAa">
+                        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
 
                         <p class="small__text">Отправляя заявку, вы даете согласие на хранение и обработку персональных данных. Подробнее в <a href="{{ url_for('policy') }}">политике конфиденциальности</a></p>
                         <button type="submit" class="button__fill w-100 justify-content-center">Записаться</button>
                     </form>
-
-                    <script>
-                        document.getElementById('application-form').addEventListener('submit', function(e) {
-                            e.preventDefault(); // Останавливаем отправку, чтобы дождаться токена
-
-                            grecaptcha.ready(function() {
-                                grecaptcha.execute('6LfhoQYuAAAAAPOq7RLTveXsvFpMaNpj2nWDSjAa', {action: 'submit'}).then(function(token) {
-                                    // Кладем токен в скрытое поле
-                                    document.getElementById('g-recaptcha-response').value = token;
-                                    // Отправляем форму
-                                    document.getElementById('application-form').submit();
-                                });
-                            });
-                        });
-                    </script>
-
                 </div>
             </div>
         </div>
@@ -870,6 +854,21 @@
     <script src="{{ url_for('static', path='js/owl.carousel.js') }}"></script>
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
     <script src="{{ url_for('static', path='js/scripts.js') }}"></script>
+
+    <script>
+        document.getElementById('application-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Останавливаем отправку, чтобы дождаться токена
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6LfhoQYuAAAAAPOq7RLTveXsvFpMaNpj2nWDSjAa', {action: 'submit'}).then(function(token) {
+                    // Кладем токен в скрытое поле
+                    document.getElementById('g-recaptcha-response').value = token;
+                    // Отправляем форму
+                    document.getElementById('application-form').submit();
+                });
+            });
+        });
+    </script>
 
 </body>
 
