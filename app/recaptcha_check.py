@@ -1,9 +1,10 @@
 from fastapi import Request
 import httpx
 from starlette.exceptions import HTTPException
+from fastapi import Form
 
 
-async def recaptcha_check(request: Request, g_recaptcha_response: str):
+async def recaptcha_check(request: Request, g_recaptcha_response: str = Form(None)):
     if not g_recaptcha_response:
         raise HTTPException(status_code=400, detail="Ошибка проверки каптчи: токен отсутствует")
 
