@@ -71,6 +71,7 @@
                 <div class="col d-flex flex-column align-items-center text-center">
                     <img src="{{ url_for('static', path='img/500.png') }}" alt="" width="512" height="372">
                     <p>Упс... На сервере возникла ошибка<br>Мы ее уже устраняем</p>
+                    <p>{{ detail }}</p>
                     <a href="{{ url_for('home') }}" class="button__fill">На главную</a>
                 </div>
             </div>
