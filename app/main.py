@@ -50,7 +50,8 @@ async def custom_404_handler(request, exc):
         '500.html',
         {
             "request": request,
-            "status_code": exc.status_code
+            "status_code": exc.status_code,
+            "detail": exc.detail
         },
         status_code=exc.status_code
     )
