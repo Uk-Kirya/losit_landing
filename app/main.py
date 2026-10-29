@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from fastapi import FastAPI, Request, Form
+from fastapi import FastAPI, Request, Form, Depends
 from fastapi.responses import (
     RedirectResponse,
     FileResponse,
@@ -14,6 +14,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 
+from app.recaptcha_check import recaptcha_check
 from app.mailer import send_email
 
 app = FastAPI()
@@ -327,14 +328,16 @@ async def get_yandex_file(request: Request) -> FileResponse:
 )
 async def application(
     request: Request,
-    name: str = Form(None),
-    phone: str = Form(None),
+    name: str = Form(default=None, description='Имя'),
+    phone: str = Form(default=None, description='Телефон'),
+    google_recaptcha_check: None = Depends(recaptcha_check),
 ) -> RedirectResponse:
     """
     Онлайн запись
     :param name: Name from form
     :param phone: Phone from form
     :param request: Request Object
+    :param google_recaptcha_check: Check Google reCaptcha from form
     :return: RedirectResponse Object
     """
 

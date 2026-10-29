@@ -35,6 +35,8 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/112836807" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
 
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfhoQYuAAAAAPOq7RLTveXsvFpMaNpj2nWDSjAa"></script>
+
 </head>
 
 <body class="d-flex flex-column vh-100" id="top">
@@ -754,9 +756,28 @@
                             <input type="text" name="phone" class="phone__mask form-control" id="phone" placeholder="Ваш телефон" required>
                             <label for="phone">Ваш телефон</label>
                         </div>
+
+                        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+
                         <p class="small__text">Отправляя заявку, вы даете согласие на хранение и обработку персональных данных. Подробнее в <a href="{{ url_for('policy') }}">политике конфиденциальности</a></p>
                         <button type="submit" class="button__fill w-100 justify-content-center">Записаться</button>
                     </form>
+
+                    <script>
+                        document.getElementById('application-form').addEventListener('submit', function(e) {
+                            e.preventDefault(); // Останавливаем отправку, чтобы дождаться токена
+
+                            grecaptcha.ready(function() {
+                                grecaptcha.execute('ВАШ_КЛЮЧ_САЙТА', {action: 'submit'}).then(function(token) {
+                                    // Кладем токен в скрытое поле
+                                    document.getElementById('g-recaptcha-response').value = token;
+                                    // Отправляем форму
+                                    document.getElementById('application-form').submit();
+                                });
+                            });
+                        });
+                    </script>
+
                 </div>
             </div>
         </div>
