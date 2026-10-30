@@ -254,10 +254,6 @@ header ul a:hover {
     background-color: var(--midnight-blue);
 }
 
-.button__fill[disabled] {
-    background-color: #c1c1c1 !important;
-}
-
 .button__stroke {
     background-color: transparent;
     color: var(--primary);
