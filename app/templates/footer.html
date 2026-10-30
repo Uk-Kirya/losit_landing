@@ -156,85 +156,16 @@
 <script src="{{ url_for('static', path='js/scripts.js') }}"></script>
 
 <script>
-    (function () {
-        const form = document.getElementById('applicationForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const recaptchaField = document.getElementById('g-recaptcha-response');
-        const nameInput = document.getElementById('name');
-        const phoneInput = document.getElementById('phone');
+    document.getElementById('applicationForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Останавливаем отправку, чтобы дождаться токена
 
-        let isSubmitting = false;
-
-        function isFormValid() {
-            return nameInput.value.trim().length >= 2 &&
-                   phoneInput.value.replace(/\D/g, '').length >= 10;
-        }
-
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            if (isSubmitting) return;
-
-            if (!isFormValid()) {
-                form.classList.add('was-validated');
-                return;
-            }
-
-            isSubmitting = true;
-            submitBtn.disabled = true;
-
-            grecaptcha.ready(function () {
-                grecaptcha.execute(
-                    '6LfhoQYuAAAAAPOq7RLTveXsvFpMaNpj2nWDSjAa',
-                    { action: 'submit' }
-                )
-                .then(function (token) {
-                    recaptchaField.value = token;
-
-                    // Функция реальной отправки формы
-                    function sendForm() {
-                        HTMLFormElement.prototype.submit.call(form);
-                    }
-
-                    // Фиксируем цель и ждём callback
-                    if (typeof ym === 'function') {
-
-                        let sent = false;
-
-                        function finish() {
-                            if (sent) return;
-                            sent = true;
-                            sendForm();
-                        }
-
-                        ym(
-                            676148202,
-                            'reachGoal',
-                            'form_send_success',
-                            {},
-                            function () {
-                                console.log('Цель Метрики отправлена');
-                                finish();
-                            }
-                        );
-
-                        // Страховка, если callback не сработает
-                        setTimeout(finish, 1500);
-
-                    } else {
-                        console.warn('Яндекс.Метрика недоступна');
-                        sendForm();
-                    }
-                })
-                .catch(function (err) {
-                    console.error('reCAPTCHA error:', err);
-
-                    isSubmitting = false;
-                    submitBtn.disabled = false;
-
-                    alert('Не удалось пройти проверку. Попробуйте ещё раз.');
-                });
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LfhoQYuAAAAAPOq7RLTveXsvFpMaNpj2nWDSjAa', {action: 'submit'}).then(function(token) {
+                // Кладем токен в скрытое поле
+                document.getElementById('g-recaptcha-response').value = token;
+                // Отправляем форму
+                document.getElementById('applicationForm').submit();
             });
         });
-    })();
+    });
 </script>
