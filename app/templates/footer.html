@@ -136,23 +136,18 @@
   </div>
 {% endif %}
 
-{% if request.path == '/' %}
-  <!-- Стили -->
-  <link rel="stylesheet" href="{{ url_for('static', path='css/owl.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', path='css/fancybox.css') }}">
-  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
-{% endif %}
+<!-- Стили -->
+<link rel="stylesheet" href="{{ url_for('static', path='css/owl.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/fancybox.css') }}">
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
 
 <!-- Скрипты -->
 <script src="{{ url_for('static', path='js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ url_for('static', path='js/jquery.min.js') }}"></script>
 <script src="{{ url_for('static', path='js/jquery.maskedinput.js') }}"></script>
-
-{% if request.path == '/' %}
-  <script src="{{ url_for('static', path='js/fancybox.umd.js') }}"></script>
-  <script src="{{ url_for('static', path='js/owl.carousel.js') }}"></script>
-  <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
-{% endif %}
+<script src="{{ url_for('static', path='js/fancybox.umd.js') }}"></script>
+<script src="{{ url_for('static', path='js/owl.carousel.js') }}"></script>
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
 <script src="{{ url_for('static', path='js/scripts.js') }}"></script>
 
 <script>
