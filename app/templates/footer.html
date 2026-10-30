@@ -157,15 +157,14 @@
 
 <script>
     (function () {
-        const form      = document.getElementById('applicationForm');
+        const form = document.getElementById('applicationForm');
         const submitBtn = document.getElementById('submitBtn');
         const recaptchaField = document.getElementById('g-recaptcha-response');
-        const nameInput  = document.getElementById('name');
+        const nameInput = document.getElementById('name');
         const phoneInput = document.getElementById('phone');
 
-        let isSubmitting = false; // защита от двойной отправки
+        let isSubmitting = false;
 
-        // Простая валидация (дополняет ваш скрипт, который включает кнопку)
         function isFormValid() {
             return nameInput.value.trim().length >= 2 &&
                    phoneInput.value.replace(/\D/g, '').length >= 10;
@@ -174,10 +173,8 @@
         form.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            // Защита от двойного клика / повторной отправки
             if (isSubmitting) return;
 
-            // Дублируем проверку на случай, если кнопку "включили" в обход скрипта
             if (!isFormValid()) {
                 form.classList.add('was-validated');
                 return;
@@ -187,27 +184,56 @@
             submitBtn.disabled = true;
 
             grecaptcha.ready(function () {
-                grecaptcha.execute('6LfhoQYuAAAAAPOq7RLTveXsvFpMaNpj2nWDSjAa', { action: 'submit' })
-                    .then(function (token) {
-                        recaptchaField.value = token;
+                grecaptcha.execute(
+                    '6LfhoQYuAAAAAPOq7RLTveXsvFpMaNpj2nWDSjAa',
+                    { action: 'submit' }
+                )
+                .then(function (token) {
+                    recaptchaField.value = token;
 
-                        // Цель Метрики — срабатывает в момент реальной отправки формы
-                        if (typeof ym === 'function') {
-                            ym(676148202, 'reachGoal', 'form_send_success');
+                    // Функция реальной отправки формы
+                    function sendForm() {
+                        HTMLFormElement.prototype.submit.call(form);
+                    }
+
+                    // Фиксируем цель и ждём callback
+                    if (typeof ym === 'function') {
+
+                        let sent = false;
+
+                        function finish() {
+                            if (sent) return;
+                            sent = true;
+                            sendForm();
                         }
 
-                        // requestSubmit() запускает событие submit повторно,
-                        // но т.к. выше уже стоит e.preventDefault() + флаг —
-                        // используем нативный submit(), чтобы не зациклиться.
-                        HTMLFormElement.prototype.submit.call(form);
-                    })
-                    .catch(function (err) {
-                        // Если капча не отработала — разблокируем и сообщаем
-                        console.error('reCAPTCHA error:', err);
-                        isSubmitting = false;
-                        submitBtn.disabled = false;
-                        alert('Не удалось пройти проверку. Попробуйте ещё раз.');
-                    });
+                        ym(
+                            676148202,
+                            'reachGoal',
+                            'form_send_success',
+                            {},
+                            function () {
+                                console.log('Цель Метрики отправлена');
+                                finish();
+                            }
+                        );
+
+                        // Страховка, если callback не сработает
+                        setTimeout(finish, 1500);
+
+                    } else {
+                        console.warn('Яндекс.Метрика недоступна');
+                        sendForm();
+                    }
+                })
+                .catch(function (err) {
+                    console.error('reCAPTCHA error:', err);
+
+                    isSubmitting = false;
+                    submitBtn.disabled = false;
+
+                    alert('Не удалось пройти проверку. Попробуйте ещё раз.');
+                });
             });
         });
     })();
